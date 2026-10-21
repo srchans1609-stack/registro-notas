@@ -23,13 +23,35 @@
 ### Preguntas teóricas
 
 **1. ¿Qué da a [3] si el array solo tiene 3 elementos? ¿Por qué?**
-> Da `undefined` porque los índices empiezan en 0 (las posiciones son 0, 1 y 2). Al no existir la posición 3, no tiene valor definido.
+Da `undefined` porque los índices empiezan en 0 (las posiciones son 0, 1 y 2). Al no existir la posición 3, no tiene valor definido.
 
 **2. ¿Por qué q.push(4) cambió p y r.push(5) no? Explica qué es copiar y qué es referenciar.**
-> `q = p` asigna por **referencia** (ambas variables apuntan exactamente al mismo array en memoria). `r = [...p]` hace una **copia** (crea un array totalmente nuevo). Referenciar es compartir el mismo dato; copiar es crear un duplicado independiente.
+ `q = p` asigna por **referencia** (ambas variables apuntan exactamente al mismo array en memoria). `r = [...p]` hace una **copia** (crea un array totalmente nuevo). Referenciar es compartir el mismo dato; copiar es crear un duplicado independiente.
 
 **3. ¿Por qué [10, 9, 1].sort() no dio [1, 9, 10]?**
-> Porque el método `sort()` por defecto convierte los números a texto y los ordena alfabéticamente (el "10" empieza por "1", así que va antes que el "9").
+ Porque el método `sort()` por defecto convierte los números a texto y los ordena alfabéticamente (el "10" empieza por "1", así que va antes que el "9").
 
 **4. De los cuatro métodos del bloque D, ¿cuáles cambian el array y cuáles devuelven uno nuevo?**
-> `push()` y `pop()` cambian (mutan) el array original. `slice()` y `map()` no lo cambian, devuelven un array nuevo.
+ `push()` y `pop()` cambian (mutan) el array original. `slice()` y `map()` no lo cambian, devuelven un array nuevo.
+
+### Fase 2: Añadir, quitar, buscar y ordenar
+
+**Análisis de funciones:**
+*   `anadirAlumno`: **Cambia la lista** (usa `push()`).
+*   `quitarUltimo`: **Cambia la lista** (usa `pop()`).
+*   `buscarPorNombre`: **No cambia la lista** (solo busca con `find()`).
+*   `insertarEn`: **Cambia la lista** (usa `splice()`).
+*   `borrarPorNombre`: **Cambia la lista** (usa `splice()`).
+*   `ordenarPorNota`: **No cambia la lista** (hace una copia con `[...lista]` antes de ordenar).
+*   `ordenarPorNombre`: **No cambia la lista** (hace una copia con `[...lista]` antes de ordenar).
+
+**Preguntas teóricas:**
+
+**1. ¿Qué funciones de esta fase cambian la lista y cuáles no? ¿Cómo lo sabes?**
+ Cambian la lista: `anadirAlumno`, `quitarUltimo`, `insertarEn` y `borrarPorNombre`. No la cambian: `buscarPorNombre`, `ordenarPorNota` y `ordenarPorNombre`. Lo sé por los métodos de array que utilizan (push, pop y splice modifican el original; mientras que si hacemos una copia previa con `[...lista]`, protegemos el original).
+
+**2. ¿Por qué ordenarPorNota hace una copia antes de ordenar?**
+ Porque el método `sort()` modifica (muta) el array original sobre el que se aplica. Si no hiciéramos la copia, desordenaríamos nuestra lista principal de alumnos.
+
+**3. ¿Qué pasaría con las notas 10, 9 y 1 si no usaras una función de comparación?**
+Que el método `sort()` las trataría como texto y las ordenaría alfabéticamente, quedando el orden incorrecto: `[1, 10, 9]`.
