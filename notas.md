@@ -55,3 +55,28 @@ Da `undefined` porque los índices empiezan en 0 (las posiciones son 0, 1 y 2). 
 
 **3. ¿Qué pasaría con las notas 10, 9 y 1 si no usaras una función de comparación?**
 Que el método `sort()` las trataría como texto y las ordenaría alfabéticamente, quedando el orden incorrecto: `[1, 10, 9]`.
+
+### Fase 3: Estadísticas de la clase
+
+**Experimentos con lista vacía:**
+* `notaMedia([])`: Devuelve 0.
+* `notaMaxima([])`: Devuelve null.
+* `aprobados([])`: Devuelve `[]` (array vacío).
+* `nombresAprobados([])`: Devuelve `[]` (array vacío).
+* `hayAlgunDiez([])`: Devuelve `false`.
+* `todosAprobados([])`: Devuelve `true`.
+* `ranking([], 2)`: Devuelve `[]` (array vacío).
+* **Error del reduce:** Si le quitas el valor inicial a `reduce` y le pasas una lista vacía, la consola da el error: `TypeError: Reduce of empty array with no initial value`.
+
+**Preguntas teóricas:**
+
+**1. ¿Por qué reduce necesita un valor inicial cuando la lista está vacía?**
+> Porque si no le pones un valor inicial, el método `reduce` intenta usar el primer elemento del array para empezar a calcular. Como el array está vacío y no tiene primer elemento, el programa se rompe y lanza un error. Al ponerle el `0`, le damos un punto de partida seguro.
+
+**2. ¿Qué devuelve todosAprobados con una lista vacía? ¿Te parece lógico? Explícalo.**
+> Devuelve `true`. Sí es lógico por cómo funciona la lógica matemática (se conoce como "verdad vacua"). Como la lista está vacía, no hay ningún alumno que tenga menos de un 5. Al no existir nadie que rompa la regla, la afirmación "todos tienen 5 o más" se considera verdadera.
+
+**3. ¿Qué diferencia hay entre map y filter? Pon un ejemplo de tu código.**
+> `filter` se usa para filtrar o descartar elementos: evalúa una condición y devuelve un array solo con los que la cumplen (el array resultante puede ser más pequeño). `map` se usa para transformar elementos: devuelve siempre un array exactamente de la misma longitud que el original, pero con los datos modificados.
+> * Ejemplo de filter: `lista.filter(alumno => alumno.nota >= 5)` (se queda solo con los objetos de alumnos aprobados).
+> * Ejemplo de map: `aprobados(lista).map(alumno => alumno.nombre)` (transforma los objetos completos de los alumnos para extraer únicamente el texto de sus nombres).

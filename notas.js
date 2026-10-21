@@ -43,3 +43,33 @@ function ordenarPorNota(lista) {
 function ordenarPorNombre(lista) {
   return [...lista].sort((a, b) => a.nombre.localeCompare(b.nombre));
 }
+
+function notaMedia(lista) {
+  if (lista.length === 0) return 0;
+  return lista.reduce((suma, alumno) => suma + alumno.nota, 0) / lista.length;
+}
+
+function notaMaxima(lista) {
+  if (lista.length === 0) return null;
+  return Math.max(...lista.map(alumno => alumno.nota));
+}
+
+function aprobados(lista) {
+  return lista.filter(alumno => alumno.nota >= 5);
+}
+
+function nombresAprobados(lista) {
+  return aprobados(lista).map(alumno => alumno.nombre);
+}
+
+function hayAlgunDiez(lista) {
+  return lista.some(alumno => alumno.nota === 10);
+}
+
+function todosAprobados(lista) {
+  return lista.every(alumno => alumno.nota >= 5);
+}
+
+function ranking(lista, n) {
+  return [...lista].sort((a, b) => b.nota - a.nota).slice(0, n);
+}
