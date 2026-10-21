@@ -90,3 +90,29 @@ Porque la lista original (nuestra "base de datos") debe mantenerse siempre intac
 
 **2. ¿Qué pasaría en la página si ordenarAlumnos cambiara la lista original?**
 Que perderíamos el orden en el que los alumnos fueron añadidos. Si ordenamos por nota y alteramos la lista original, ese nuevo orden se quedaría guardado permanentemente. Si después quisiéramos volver a ver la lista tal y como estaba al principio, no podríamos hacerlo.
+
+### Fase 5: Depuración con console.table
+
+**Fallo 1:**
+* **Qué pasaba:** Devolvía `[1, 10, 5, 9]`.
+* **Por qué:** `sort()` por defecto ordena tratando los números como texto (alfabéticamente).
+* **Cómo lo arreglé:** Añadiendo la función de comparación `(a, b) => a - b`.
+* **Herramienta:** `console.log`.
+
+**Fallo 2:**
+* **Qué pasaba:** Al ordenar `copia`, también se desordenaba el array original `alumnos`.
+* **Por qué:** `const copia = alumnos;` no copia el array, solo crea una referencia.
+* **Cómo lo arreglé:** Usando el spread operator para hacer una copia real: `const copia = [...alumnos];`.
+* **Herramienta:** `console.table`.
+
+**Fallo 3:**
+* **Qué pasaba:** Daba un error de tipo `TypeError`.
+* **Por qué:** Se intentaba usar `reduce` en un array vacío sin proporcionar un valor inicial.
+* **Cómo lo arreglé:** Añadiendo `, 0` al final del reduce.
+* **Herramienta:** El mensaje de error de la consola.
+
+**Fallo 4:**
+* **Qué pasaba:** Imprimía los nombres pero al final daba un error `TypeError: Cannot read properties of undefined`.
+* **Por qué:** La condición del bucle era `i <= alumnos.length`. Al usar el `<=`, intentaba acceder a una posición que no existe.
+* **Cómo lo arreglé:** Cambiando `<=` por `<`.
+* **Herramienta:** El mensaje de error de la consola.
