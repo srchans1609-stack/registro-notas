@@ -73,3 +73,30 @@ function todosAprobados(lista) {
 function ranking(lista, n) {
   return [...lista].sort((a, b) => b.nota - a.nota).slice(0, n);
 }
+
+function filtrarAlumnos(lista, filtro) {
+  if (filtro === "aprobados") {
+    return lista.filter(alumno => alumno.nota >= 5);
+  } else if (filtro === "suspensos") {
+    return lista.filter(alumno => alumno.nota < 5);
+  }
+  return [...lista]; // si es "todos"
+}
+
+function ordenarAlumnos(lista, criterio) {
+  if (criterio === "nombre") {
+    return ordenarPorNombre(lista);
+  } else if (criterio === "nota-desc") {
+    return ordenarPorNota(lista); // La de la Fase 2 ya ordenaba de mayor a menor
+  } else if (criterio === "nota-asc") {
+    return ordenarPorNota(lista).reverse(); // Le damos la vuelta para que sea de menor a mayor
+  }
+  return [...lista];
+}
+
+function esNotaValida(texto) {
+  if (texto.trim() === "") return false;
+  const numero = Number(texto);
+  if (isNaN(numero)) return false;
+  return numero >= 0 && numero <= 10;
+}

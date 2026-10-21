@@ -3,11 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro de Notas</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    
+    <h1>Registro de Notas</h1>
 
-   
+    <div style="margin-bottom: 20px;">
+        <label>Mostrar: </label>
+        <select id="filtro">
+            <option value="todos">Todos</option>
+            <option value="aprobados">Aprobados</option>
+            <option value="suspensos">Suspensos</option>
+        </select>
+
+        <label style="margin-left: 20px;">Ordenar por: </label>
+        <select id="orden">
+            <option value="nombre">Nombre</option>
+            <option value="nota-desc">Nota más alta primero</option>
+            <option value="nota-asc">Nota más baja primero</option>
+        </select>
+    </div>
+
+    <table border="1" style="width: 400px; text-align: center; border-collapse: collapse;">
+        <thead>
+            <tr style="background-color: #eee;">
+                <th>Nombre</th>
+                <th>Nota</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla">
+            <!-- JavaScript meterá aquí las filas -->
+        </tbody>
+    </table>
+
+    <div id="resumen" style="margin-top: 20px; padding: 10px; background-color: #f9f9f9; width: 380px;">
+        <!-- JavaScript meterá aquí el resumen -->
+    </div>
+
+    <hr style="width: 400px; margin-left: 0;">
+
+    <h3>Añadir alumno</h3>
+    <div>
+        <input type="text" id="inputNombre" placeholder="Nombre del alumno">
+        <input type="text" id="inputNota" placeholder="Nota (0-10)">
+        <button id="btnAnadir">Añadir</button>
+        <p id="mensajeError" style="color: red; font-weight: bold;"></p>
+    </div>
+
     <script src="notas.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

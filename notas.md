@@ -80,3 +80,13 @@ Que el método `sort()` las trataría como texto y las ordenaría alfabéticamen
 > `filter` se usa para filtrar o descartar elementos: evalúa una condición y devuelve un array solo con los que la cumplen (el array resultante puede ser más pequeño). `map` se usa para transformar elementos: devuelve siempre un array exactamente de la misma longitud que el original, pero con los datos modificados.
 > * Ejemplo de filter: `lista.filter(alumno => alumno.nota >= 5)` (se queda solo con los objetos de alumnos aprobados).
 > * Ejemplo de map: `aprobados(lista).map(alumno => alumno.nombre)` (transforma los objetos completos de los alumnos para extraer únicamente el texto de sus nombres).
+
+### Fase 4: Tabla dinámica con filtro y orden
+
+**Preguntas teóricas:**
+
+**1. ¿Por qué filtrarAlumnos y ordenarAlumnos devuelven copias?**
+Porque la lista original (nuestra "base de datos") debe mantenerse siempre intacta para no perder información. Si `filtrarAlumnos` no devolviera una copia sino que borrara a los suspensos de la lista original, perderíamos a esos alumnos para siempre y no podríamos volver a darle a "Mostrar: Todos". Al usar copias, solo modificamos lo que se "dibuja" en la tabla, manteniendo los datos reales a salvo.
+
+**2. ¿Qué pasaría en la página si ordenarAlumnos cambiara la lista original?**
+Que perderíamos el orden en el que los alumnos fueron añadidos. Si ordenamos por nota y alteramos la lista original, ese nuevo orden se quedaría guardado permanentemente. Si después quisiéramos volver a ver la lista tal y como estaba al principio, no podríamos hacerlo.
